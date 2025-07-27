@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: cars
+      POSTGRES_PASSWORD: cars123
+      POSTGRES_DB: usedcars
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  payara:
+    image: payara/server-full:latest
+    container_name: payara
+    ports:
+      - "8080:8080"
+      - "4848:4848"  # Admin console
+    volumes:
+      - ./deployment:/opt/payara/deployments
+    depends_on:
+      - db
+
+volumes:
+  db_data:
