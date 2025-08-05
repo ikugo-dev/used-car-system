@@ -1,110 +1,73 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.cars</groupId>
-  <artifactId>used-cars-system</artifactId>
+  <groupId>com.project</groupId>
+  <artifactId>cars-project</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>Used Cars System</name>
+  <packaging>war</packaging>
 
-  <modules>
-    <module>persistence</module>
-    <module>web</module>
-    <module>service</module>
-  </modules>
+  <name>cars-project</name>
 
   <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-    <!-- Dependency versions -->
-    <jakartaee.version>10.0.0</jakartaee.version>
-    <hibernate.version>6.4.4.Final</hibernate.version>
-    <postgres.version>42.7.3</postgres.version>
-    <!-- <junit.version>4.13.2</junit.version> -->
-    <postgre.version>42.7.3</postgre.version>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <!-- Jakarta EE platform -->
-      <dependency>
-        <groupId>jakarta.platform</groupId>
-        <artifactId>jakarta.jakartaee-api</artifactId>
-        <version>10.0.0</version>
-        <scope>provided</scope>
-      </dependency>
+  <dependencies>
 
-      <!-- PostgreSQL JDBC -->
-      <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <version>42.7.3</version>
-      </dependency>
+    <!-- JSF -->
+    <dependency>
+      <groupId>jakarta.faces</groupId>
+      <artifactId>jakarta.faces-api</artifactId>
+      <version>3.0.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-      <!-- Hibernate -->
-      <dependency>
-        <groupId>org.hibernate.orm</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>6.2.7.Final</version>
-      </dependency>
+    <!-- JPA (Hibernate) -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.6.15.Final</version>
+    </dependency>
 
+    <!-- JDBC Driver (e.g., H2 or your DB of choice) -->
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>2.1.214</version>
+    </dependency>
 
-      <!-- Optional: H2 for in-memory testing -->
-      <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>2.2.224</version>
-        <!-- <scope>runtime</scope> -->
-      </dependency>
+    <!-- JTA and CDI -->
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>jakarta.enterprise.cdi-api</artifactId>
+      <version>3.0.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-      <!-- JUnit 5 -->
-      <!-- <dependency> -->
-      <!--   <groupId>org.junit.jupiter</groupId> -->
-      <!--   <artifactId>junit-jupiter</artifactId> -->
-      <!--   <version>4.13.2</version> -->
-      <!--   <scope>test</scope> -->
-      <!-- </dependency> -->
+    <!-- Java EE APIs (includes EJB, JPA, etc., if needed by your server) -->
+    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-api</artifactId>
+      <version>9.1.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-
-      <dependency>
-        <groupId>com.cars</groupId>
-        <artifactId>service</artifactId>
-        <version>1.0-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>com.cars</groupId>
-        <artifactId>persistence</artifactId>
-        <version>1.0-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>com.cars</groupId>
-        <artifactId>web</artifactId>
-        <version>1.0-SNAPSHOT</version>
-      </dependency>
-      <dependency>
-        <groupId>com.cars</groupId>
-        <artifactId>test</artifactId>
-        <version>1.0-SNAPSHOT</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+  </dependencies>
 
   <build>
+    <finalName>cars-project</finalName>
     <pluginManagement>
       <plugins>
-        <!-- WAR Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
 
-        <!-- Compiler Plugin -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>

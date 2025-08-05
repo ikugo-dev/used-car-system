@@ -1,1 +1,1 @@
-java -jar tools/payara-micro.jar --deploy web/target/web.war
+java -jar tools/payara-micro.jar --deploy ./target/cars-project.war
