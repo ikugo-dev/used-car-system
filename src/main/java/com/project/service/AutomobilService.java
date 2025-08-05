@@ -1,6 +1,6 @@
-package com.cars.service;
+package com.project.service;
 
-import com.cars.persistence.Automobil;
+import com.project.persistence.Automobil;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
 

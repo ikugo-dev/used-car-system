@@ -1,7 +1,7 @@
 package com.project.web;
 
-import com.cars.service.AutomobilService;
-import com.cars.persistence.Automobil;
+import com.project.service.AutomobilService;
+import com.project.persistence.Automobil;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;

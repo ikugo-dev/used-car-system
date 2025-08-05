@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+    <jdbc-connection-pool name="CarPool"
+                          res-type="javax.sql.DataSource"
+                          datasource-classname="org.h2.jdbcx.JdbcDataSource"
+                          steady-pool-size="2"
+                          max-pool-size="10"
+                          pool-resize-quantity="2"
+                          idle-timeout-in-seconds="300"
+                          is-connection-validation-required="false">
+        <property name="URL" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"/>
+        <property name="user" value="sa"/>
+        <property name="password" value=""/>
+    </jdbc-connection-pool>
+
+    <jdbc-resource pool-name="CarPool" jndi-name="java:app/jdbc/CarDS"/>
+</resources>

@@ -1,4 +1,4 @@
-package com.cars.persistence;
+package com.project.persistence;
 
 import jakarta.persistence.*;
 import java.util.List;

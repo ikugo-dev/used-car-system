@@ -1,6 +1,6 @@
-package com.cars.service;
+package com.project.service;
 
-import com.cars.persistence.Kupac;
+import com.project.persistence.Kupac;
 import jakarta.persistence.*;
 import java.util.List;
 
