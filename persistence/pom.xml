@@ -10,26 +10,23 @@
   <artifactId>persistence</artifactId>
 
   <dependencies>
-    <!-- JPA API -->
     <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>
       <version>3.1.0</version>
     </dependency>
 
-    <!-- Hibernate -->
     <dependency>
       <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>6.2.7.Final</version>
     </dependency>
 
-      <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>2.2.224</version>
-        <!-- <scope>runtime</scope> -->
-      </dependency>
+    <dependency>
+      <groupId>org.xerial</groupId>
+      <artifactId>sqlite-jdbc</artifactId>
+      <version>3.45.3.0</version>
+    </dependency>
 
     <!-- Comment this out or remove it entirely if you're not testing -->
     <!--

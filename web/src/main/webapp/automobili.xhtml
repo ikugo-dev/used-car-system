@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:form>
+    <h2>Dodaj novi automobil</h2>
+    <h:panelGrid columns="2">
+        <h:outputLabel value="Marka:" />
+        <h:inputText value="#{pregledAutomobilaBean.marka}" />
+
+        <h:outputLabel value="Model:" />
+        <h:inputText value="#{pregledAutomobilaBean.model}" />
+
+        <h:outputLabel value="Godina:" />
+        <h:inputText value="#{pregledAutomobilaBean.godina}" />
+
+        <h:outputLabel value="Cena (€):" />
+        <h:inputText value="#{pregledAutomobilaBean.cena}" />
+
+        <h:outputLabel value="Prodavac:" />
+        <h:inputText value="#{pregledAutomobilaBean.prodavac}" />
+    </h:panelGrid>
+    <br />
+    <h:commandButton value="Dodaj automobil" action="#{pregledAutomobilaBean.save}" />
+</h:form>
+
+<h2>Lista dostupnih automobila</h2>
+<h:dataTable value="#{pregledAutomobilaBean.automobili}" var="auto" border="1">
+    <h:column>
+        <f:facet name="header">Marka</f:facet>
+        #{auto.marka}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Model</f:facet>
+        #{auto.model}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Godina</f:facet>
+        #{auto.godina}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Cena (€)</f:facet>
+        #{auto.cena}
+    </h:column>
+    <h:column>
+        <f:facet name="header">Prodavac</f:facet>
+        #{auto.prodavac}
+    </h:column>
+</h:dataTable>
+
+</html>
