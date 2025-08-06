@@ -1,0 +1,8 @@
+com/project/web/PregledAutomobilaBean.class
+com/project/persistence/Osoba.class
+com/project/service/AutomobilService.class
+com/project/service/KupacService.class
+com/project/persistence/Automobil.class
+com/project/persistence/Kupac.class
+com/project/persistence/Radnik.class
+com/project/service/Main.class
