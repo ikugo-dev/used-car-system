@@ -1,37 +1,53 @@
 package com.project.service;
 
 import com.project.persistence.Kupac;
-import jakarta.ejb.Stateless;
-import jakarta.persistence.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
+@Transactional
 public class KupacService {
 
-    @PersistenceContext(unitName = "CarPU")
-    private EntityManager em;
+    private SessionFactory sessionFactory;
 
-    public void create(Kupac kupac) {
-        em.persist(kupac);
+    @PostConstruct
+    public void init() {
+        sessionFactory = SessionCreator.getSessionFactory();
     }
 
-    public Kupac find(Long id) {
-        return em.find(Kupac.class, id);
+    @PreDestroy
+    public void close() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
     }
 
-    public List<Kupac> findAll() {
-        return em.createQuery("SELECT k FROM Kupac k", Kupac.class).getResultList();
+    public List<Kupac> getAllKupci() {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from Kupac", Kupac.class).list();
+        }
     }
 
-    public void update(Kupac kupac) {
-        em.merge(kupac);
+    public void addKupac(Kupac kupac) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.persist(kupac);
+            session.getTransaction().commit();
+        }
     }
 
-    public void delete(Long id) {
-        Kupac kupac = em.find(Kupac.class, id);
-        if (kupac != null) {
-            em.remove(kupac);
+    public void removeKupac(Kupac kupac) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.remove(kupac);
+            session.getTransaction().commit();
         }
     }
 }

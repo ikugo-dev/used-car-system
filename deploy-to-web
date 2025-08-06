@@ -1,2 +1,3 @@
+mvn clean package
 java -jar ./tools/payara-micro.jar \
   --deploy ./target/cars-project.war \

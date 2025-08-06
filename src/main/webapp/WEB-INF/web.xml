@@ -6,7 +6,6 @@
 
     <display-name>Cars Project</display-name>
 
-    <!-- JSF Configuration -->
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>jakarta.faces.webapp.FacesServlet</servlet-class>
