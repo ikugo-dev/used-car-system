@@ -4,27 +4,53 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Radnik extends Osoba {
-
-    // Add specific Radnik fields or methods here
-    // For now, it's empty, just inherit from Osoba
+public class Radnik {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String ime;
+    private String prezime;
+    @OneToMany
+    private List<Automobil> automobiliUDodavanju;
 
     public Radnik() {
-        super();
     }
 
-    public Radnik(String ime, String prezime, Integer godine, Long jmbg) {
-        super(ime, prezime, godine, jmbg);
+    public Radnik(String ime, String prezime) {
+        this.ime = ime;
+        this.prezime = prezime;
     }
 
-    @OneToMany
-    private List<Automobil> automobili; // cars the worker can manage
-
-    public List<Automobil> getAutomobili() {
-        return automobili;
+    public Long getId() {
+        return id;
     }
 
-    public void setAutomobili(List<Automobil> automobili) {
-        this.automobili = automobili;
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
+
+    public List<Automobil> getAutomobiliUDodavanju() {
+        return automobiliUDodavanju;
+    }
+
+    public void setAutomobiliUDodavanju(List<Automobil> automobiliUDodavanju) {
+        this.automobiliUDodavanju = automobiliUDodavanju;
+    }
+
 }

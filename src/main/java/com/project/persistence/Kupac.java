@@ -8,22 +8,12 @@ public class Kupac {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
     private String ime;
-
-    public String getName() {
-        return ime + " " + prezime;
-    }
-
     private String prezime;
     private String email;
     private String sifra;
-
-    // Constructors, getters, setters
+    @OneToMany
+    private List<Automobil> automobili;
 
     public Kupac() {
     }
@@ -35,8 +25,45 @@ public class Kupac {
         this.sifra = sifra;
     }
 
-    @OneToMany
-    private List<Automobil> automobili; // cars the customer is interested in (or owns)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getIme() {
+        return ime;
+    }
+
+    public void setIme(String ime) {
+        this.ime = ime;
+    }
+
+    public String getPrezime() {
+        return prezime;
+    }
+
+    public void setPrezime(String prezime) {
+        this.prezime = prezime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSifra() {
+        return sifra;
+    }
+
+    public void setSifra(String sifra) {
+        this.sifra = sifra;
+    }
 
     public List<Automobil> getAutomobili() {
         return automobili;
@@ -45,5 +72,4 @@ public class Kupac {
     public void setAutomobili(List<Automobil> automobili) {
         this.automobili = automobili;
     }
-    // Getters and setters...
 }

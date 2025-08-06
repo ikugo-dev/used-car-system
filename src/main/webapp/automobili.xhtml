@@ -44,7 +44,9 @@
         #{car.prodavac}
     </h:column>
     <h:column>
-        <h:commandButton value="Remove" action="#{carBean.removeCar(car)}" />
+        <h:form>
+            <h:commandButton value="Remove" action="#{carBean.removeCar(car)}" immediate="true" />
+        </h:form>
     </h:column>
 </h:dataTable>
 </h:body>

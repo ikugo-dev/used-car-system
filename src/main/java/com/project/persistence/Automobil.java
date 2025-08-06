@@ -1,26 +1,18 @@
 package com.project.persistence;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
 @Entity
 public class Automobil {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String marka;
     private String model;
     private int godina;
     private double cena;
     private String prodavac;
 
-    // Getters and setters omitted for brevity
-
-    // Constructor(s)
     public Automobil() {
     }
 
@@ -32,4 +24,51 @@ public class Automobil {
         this.prodavac = prodavac;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getMarka() {
+        return marka;
+    }
+
+    public void setMarka(String marka) {
+        this.marka = marka;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public int getGodina() {
+        return godina;
+    }
+
+    public void setGodina(int godina) {
+        this.godina = godina;
+    }
+
+    public double getCena() {
+        return cena;
+    }
+
+    public void setCena(double cena) {
+        this.cena = cena;
+    }
+
+    public String getProdavac() {
+        return prodavac;
+    }
+
+    public void setProdavac(String prodavac) {
+        this.prodavac = prodavac;
+    }
 }

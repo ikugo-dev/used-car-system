@@ -18,14 +18,12 @@ public class AutomobilService {
 
     @PostConstruct
     public void init() {
-        // Configure Hibernate programmatically
         sessionFactory = new Configuration()
                 .addAnnotatedClass(Automobil.class)
                 .setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect")
                 .setProperty("hibernate.connection.driver_class", "org.h2.Driver")
-                // Use local file DB, change URL for in-memory ("jdbc:h2:mem:testdb")
-                .setProperty("hibernate.connection.url", "jdbc:h2:./data/carDB;AUTO_SERVER=TRUE")
-                .setProperty("hibernate.hbm2ddl.auto", "update") // auto create/update schema
+                .setProperty("hibernate.connection.url", "jdbc:h2:./data/carDB;AUTO_SERVER=TRUE") // ("jdbc:h2:mem:testdb")
+                .setProperty("hibernate.hbm2ddl.auto", "update")
                 .setProperty("hibernate.show_sql", "true")
                 .buildSessionFactory();
     }
@@ -46,7 +44,7 @@ public class AutomobilService {
     public void addCar(Automobil car) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.save(car);
+            session.persist(car);
             session.getTransaction().commit();
         }
     }
@@ -54,7 +52,7 @@ public class AutomobilService {
     public void removeCar(Automobil car) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            session.delete(car);
+            session.remove(car);
             session.getTransaction().commit();
         }
     }
