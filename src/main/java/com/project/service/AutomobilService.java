@@ -1,37 +1,61 @@
 package com.project.service;
 
 import com.project.persistence.Automobil;
-import jakarta.ejb.Stateless;
-import jakarta.persistence.*;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class AutomobilService {
 
-    @PersistenceContext(unitName = "CarPU")
-    private EntityManager em;
+    private SessionFactory sessionFactory;
 
-    public void create(Automobil automobil) {
-        em.persist(automobil);
+    @PostConstruct
+    public void init() {
+        // Configure Hibernate programmatically
+        sessionFactory = new Configuration()
+                .addAnnotatedClass(Automobil.class)
+                .setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect")
+                .setProperty("hibernate.connection.driver_class", "org.h2.Driver")
+                // Use local file DB, change URL for in-memory ("jdbc:h2:mem:testdb")
+                .setProperty("hibernate.connection.url", "jdbc:h2:./data/carDB;AUTO_SERVER=TRUE")
+                .setProperty("hibernate.hbm2ddl.auto", "update") // auto create/update schema
+                .setProperty("hibernate.show_sql", "true")
+                .buildSessionFactory();
     }
 
-    public Automobil find(Long id) {
-        return em.find(Automobil.class, id);
+    @PreDestroy
+    public void close() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
     }
 
-    public List<Automobil> findAll() {
-        return em.createQuery("SELECT a FROM Automobil a", Automobil.class).getResultList();
+    public List<Automobil> getAllCars() {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from Automobil", Automobil.class).list();
+        }
     }
 
-    public void update(Automobil automobil) {
-        em.merge(automobil);
+    public void addCar(Automobil car) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.save(car);
+            session.getTransaction().commit();
+        }
     }
 
-    public void delete(Long id) {
-        Automobil a = em.find(Automobil.class, id);
-        if (a != null) {
-            em.remove(a);
+    public void removeCar(Automobil car) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.delete(car);
+            session.getTransaction().commit();
         }
     }
 }

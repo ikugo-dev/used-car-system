@@ -18,29 +18,26 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <dependencies>
-    <!-- ONLY Jakarta EE API - This includes JSF, CDI, EJB, etc. -->
-    <dependency>
-      <groupId>jakarta.platform</groupId>
-      <artifactId>jakarta.jakartaee-api</artifactId>
-      <version>10.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <!-- JSF -->
-  <!--   <dependency> -->
-  <!--     <groupId>jakarta.faces</groupId> -->
-  <!--     <artifactId>jakarta.faces-api</artifactId> -->
-  <!--     <version>3.0.0</version> -->
-  <!--     <scope>provided</scope> -->
-  <!--   </dependency> -->
-    <!-- JTA and CDI -->
-  <!--   <dependency> -->
-  <!--     <groupId>jakarta.enterprise</groupId> -->
-  <!--     <artifactId>jakarta.enterprise.cdi-api</artifactId> -->
-  <!--     <version>3.0.0</version> -->
-  <!--     <scope>provided</scope> -->
-  <!--   </dependency> -->
-  </dependencies>
+<dependencies>
+  <dependency>
+    <groupId>org.hibernate.orm</groupId>
+    <artifactId>hibernate-core</artifactId>
+    <version>6.4.4.Final</version>
+  </dependency>
+
+  <dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>2.2.224</version>
+  </dependency>
+    
+  <dependency>
+    <groupId>jakarta.platform</groupId>
+    <artifactId>jakarta.jakartaee-api</artifactId>
+    <version>10.0.0</version>
+    <scope>provided</scope>
+  </dependency>
+</dependencies>
 
   <build>
     <finalName>cars-project</finalName>

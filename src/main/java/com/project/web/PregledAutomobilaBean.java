@@ -1,50 +1,51 @@
 package com.project.web;
 
+import com.project.persistence.Automobil;
+import com.project.service.AutomobilService;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Named("carBean")
 @SessionScoped
 public class PregledAutomobilaBean implements Serializable {
 
-    private List<String> cars;
-    private String newCar;
+    @Inject
+    private AutomobilService automobilService;
+
+    private List<Automobil> cars;
+    private Automobil newCar = new Automobil();
 
     @PostConstruct
     public void init() {
-        cars = new ArrayList<>();
-        cars.add("Toyota Corolla");
-        cars.add("Ford Focus");
-        cars.add("Honda Civic");
+        cars = automobilService.getAllCars();
     }
 
-    public List<String> getCars() {
+    public List<Automobil> getCars() {
         return cars;
     }
 
-    public String getNewCar() {
+    public Automobil getNewCar() {
         return newCar;
     }
 
-    public void setNewCar(String newCar) {
+    public void setNewCar(Automobil newCar) {
         this.newCar = newCar;
     }
 
-    public String addCar() {
-        if (newCar != null && !newCar.trim().isEmpty()) {
-            cars.add(newCar.trim());
-            newCar = ""; // clear input
-        }
-        return null; // stay on the same page
+    public void addCar() {
+        automobilService.addCar(newCar);
+        cars = automobilService.getAllCars();
+        newCar = new Automobil();
     }
 
-    public String removeCar(String car) {
-        cars.remove(car);
-        return null;
+    public void removeCar(Automobil car) {
+        automobilService.removeCar(car);
+        cars = automobilService.getAllCars();
     }
 }

@@ -1,9 +1,13 @@
 package com.project.persistence;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
 public class Automobil {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,8 +18,9 @@ public class Automobil {
     private double cena;
     private String prodavac;
 
-    // Constructors, getters, setters
+    // Getters and setters omitted for brevity
 
+    // Constructor(s)
     public Automobil() {
     }
 
@@ -27,5 +32,4 @@ public class Automobil {
         this.prodavac = prodavac;
     }
 
-    // Getters and setters...
 }
