@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+      xmlns:ui="jakarta.faces.facelets">
+    <!-- xmlns:f="jakarta.faces.core" -->
 <h:head>
     <title>Simple Car List</title>
 </h:head>
@@ -17,12 +18,12 @@
     <h3>Current Cars</h3>
     <h:form>
         <ul>
-            <f:repeat value="#{carBean.cars}" var="car">
+            <ui:repeat value="#{carBean.cars}" var="car">
                 <li>
                     #{car}
                     <h:commandButton value="Remove" action="#{carBean.removeCar(car)}"/>
                 </li>
-            </f:repeat>
+            </ui:repeat>
         </ul>
     </h:form>
 
