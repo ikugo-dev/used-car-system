@@ -13,7 +13,7 @@ import java.util.List;
 
 @Named("carBean")
 @SessionScoped
-public class PregledAutomobilaBean implements Serializable {
+public class AutomobilBean implements Serializable {
 
     @Inject
     private AutomobilService automobilService;
@@ -38,10 +38,11 @@ public class PregledAutomobilaBean implements Serializable {
         this.newCar = newCar;
     }
 
-    public void addCar() {
+    public String addCar() {
         automobilService.addCar(newCar);
         cars = automobilService.getAllCars();
         newCar = new Automobil();
+        return "index.xhtml?faces-redirect=true";
     }
 
     public void removeCar(Automobil car) {

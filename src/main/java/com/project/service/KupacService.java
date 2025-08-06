@@ -50,4 +50,22 @@ public class KupacService {
             session.getTransaction().commit();
         }
     }
+
+    public Kupac findByEmail(String email) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("from Kupac where email = :email", Kupac.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+        }
+    }
+
+    public Kupac findByEmailAndPassword(String email, String sifra) {
+        try (Session session = sessionFactory.openSession()) {
+            return session
+                    .createQuery("from Kupac where email = :email and sifra = :sifra", Kupac.class)
+                    .setParameter("email", email)
+                    .setParameter("sifra", sifra)
+                    .uniqueResult();
+        }
+    }
 }

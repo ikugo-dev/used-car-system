@@ -1,0 +1,6 @@
+#FileLock
+#Thu Aug 07 00:41:13 CEST 2025
+hostName=debian
+id=198818bb3552a2612f35edaf094194d56bc1618461e
+method=file
+server=127.0.1.1\:41131
