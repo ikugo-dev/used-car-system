@@ -7,7 +7,9 @@
         |
         <h:outputText value="Prijavljeni ste kao: #{userBean.ulogovaniKupac.ime} #{userBean.ulogovaniKupac.prezime}" />
         |
-        <h:commandLink action="#{userBean.logout}" value="Odjava" />
+        <h:form style="display:inline">
+            <h:commandLink action="#{userBean.logout}" value="Odjava" />
+        </h:form>
     </h:panelGroup>
 
     <h:panelGroup rendered="#{userBean.ulogovaniKupac == null}">
