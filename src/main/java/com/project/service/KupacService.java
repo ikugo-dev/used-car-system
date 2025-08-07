@@ -68,4 +68,20 @@ public class KupacService {
                     .uniqueResult();
         }
     }
+
+    public void deleteDuplicateKupacByEmail(String emailToKeep) {
+        try (var session = SessionCreator.getSessionFactory().openSession()) {
+            session.beginTransaction();
+
+            List<Kupac> duplicates = session
+                    .createQuery("from Kupac where email = :email", Kupac.class)
+                    .setParameter("email", emailToKeep)
+                    .list();
+            for (int i = 1; i < duplicates.size(); i++) {
+                session.remove(duplicates.get(i));
+            }
+
+            session.getTransaction().commit();
+        }
+    }
 }

@@ -49,4 +49,9 @@ public class AutomobilBean implements Serializable {
         automobilService.removeCar(car);
         cars = automobilService.getAllCars();
     }
+
+    // for testing
+    public void setAutomobilService(AutomobilService automobilService) {
+        this.automobilService = automobilService;
+    }
 }

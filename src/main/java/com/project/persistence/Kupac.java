@@ -10,6 +10,7 @@ public class Kupac {
     private Long id;
     private String ime;
     private String prezime;
+    @Column(unique = true)
     private String email;
     private String sifra;
     @OneToMany
