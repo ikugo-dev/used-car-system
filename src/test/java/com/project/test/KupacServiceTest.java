@@ -39,13 +39,13 @@ public class KupacServiceTest {
         Assertions.assertNull(fetched);
     }
 
-    // @Test
-    // public void testRemoveKupac() {
-    // Kupac kupac = new Kupac("Jovan", "Jovic", "jj@mail.com", "pswrd");
-    // kupacService.addKupac(kupac);
-    //
-    // kupacService.removeKupac(kupac);
-    // Kupac fetched = kupacService.findByEmailAndPassword("jj@mail.com", "pswrd");
-    // Assertions.assertNull(fetched);
-    // }
+    @Test
+    public void testRemoveKupac() {
+        Kupac kupac = new Kupac("Jovan", "Jovic", "jj@mail.com", "pswrd");
+        kupacService.addKupac(kupac);
+
+        kupacService.removeKupac(kupac);
+        Kupac fetched = kupacService.findByEmailAndPassword("jj@mail.com", "pswrd");
+        Assertions.assertNull(fetched);
+    }
 }
